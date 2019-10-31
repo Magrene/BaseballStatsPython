@@ -7,15 +7,12 @@ def getPlayerInfo(active, Firstname, Lastname):
     pIDreponsePart1 = "http://lookup-service-prod.mlb.com/json/named.search_player_all.bam?sport_code='mlb'&active_sw='"
     pIDreponsePart2 = "'&name_part='"
     pIDreponsePart3 = "%25'"
-    print(pIDreponsePart1 + active + pIDreponsePart2 + Firstname +" " + Lastname + pIDreponsePart3)
     pIDresponse = requests.get(pIDreponsePart1 + active + pIDreponsePart2 + Firstname +" " + Lastname + pIDreponsePart3)
-    
     return pIDresponse
     
 
 def getPlayerCareerStat(active, Firstname, Lastname):
     pIDresponse=getPlayerInfo(active,Firstname,Lastname)
-    print(pIDresponse.json())
     print("What would you like to know batting or pitching stats?")
     typeStat = str(input("0 - Batting stats \n1 - Hitting Stats\n"))
     if typeStat == '0':
@@ -38,8 +35,9 @@ if mode == '0':
     active = str(input("Is the player active? (Y or N)\n")).upper()
     Firstname = str(input("What is the players first name? (firstname)\n"))
     Lastname = str(input("What is the players last name? (lastname)\n"))
-    print("uh")
-    getPlayerCareerStat(active,Firstname,Lastname)
+    t = getPlayerCareerStat(active,Firstname,Lastname)
+    
+    print(t)
     
 
 
