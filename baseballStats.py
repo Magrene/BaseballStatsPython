@@ -2,6 +2,15 @@ import requests
 
 import json
 
+class Player():
+    
+    def __init__(self,playerID,active,firstname,lastname):
+        active = self.active
+        playerID = self.playerID
+        firstname = self.firstname
+        lastname = self.lastname
+        
+
 def getPlayerID():
     global active
     global Firstname
@@ -38,6 +47,7 @@ def getPlayerCareerHittingStat(playerID):
         return pBat.json()['sport_career_hitting']['queryResults']['row']['sb']
     elif pBatS == "4":
         return pBat.json()['sport_career_hitting']['queryResults']['row']['ops']
+    
 def cleanSingleStatPrint(stat,pBatS):
     if pBatS == "0":
         print(Firstname + " " + Lastname + " has " + str(stat) + " total home runs.")
@@ -64,6 +74,7 @@ if mode == '0':
     cleanSingleStatPrint(stat,pBatS)
 elif mode == '1':
     playerIDList = []
+    statList = []
     mode = '0'
     while mode == '0':
         playerIDList.append(getPlayerID())
@@ -71,7 +82,17 @@ elif mode == '1':
         mode = str(input())
         if mode == '1':
             print(playerIDList)
-            mode = str(input('0-Add additonal player to list\n1-Finalize List'))
+            mode = str(input('0-Add additonal player to list\n1-Finalize List\n'))
+    mode == '0'
+    while mode == '0':
+        statList.append(getPlayerCareerHittingStat)
+        mode = str(input('0-Add additonal stat to list\n1-Review stats you have selected'))
+        if mode == '1':
+            print(statList)
+            mode = str(input('0-Add additonal stat to list\n1-Finalize Stat'))
+                    
+                
+                
     
 
 #print(Firstname + " " + Lastname + " has " + str(pBat.json()['sport_career_hitting']['queryResults']['row']['hr']) + " total home runs.")
